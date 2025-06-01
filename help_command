@@ -1,0 +1,6 @@
+Redis
+redis-server
+redis-cli
+
+Celery
+celery -A utils.celery worker --pool=solo --loglevel=info

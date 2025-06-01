@@ -1,0 +1,7 @@
+[tool.black]
+line-length = 88
+
+[tool.flake8]
+max-line-length = 88
+exclude = [".venv", "__pycache__", ".pytest_cache", ".idea", ".git", "venv"]
+ignore = ["E203", "W503", "E501"]

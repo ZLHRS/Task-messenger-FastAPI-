@@ -1,0 +1,72 @@
+services:
+  backend:
+    build:
+      context: .
+    container_name: backend
+    working_dir: /app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST_DOCKER}
+      REDIS_URL: ${REDIS_URL_DOCKER}
+      CELERY_BROKER: ${CELERY_BROKER_DOCKER}
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+    restart: unless-stopped
+
+
+  db:
+    image: postgres:15
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  celery:
+    build:
+      context: .
+    working_dir: /app
+    command: celery -A utils.celery_app worker --pool=solo --loglevel=info
+    environment:
+      REDIS_URL_DOCKER: ${REDIS_URL_DOCKER}
+      CELERY_BROKER_DOCKER: ${CELERY_BROKER_DOCKER}
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - backend
+    restart: unless-stopped
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    environment:
+      REDIS_URL_DOCKER: ${REDIS_URL_DOCKER}
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
