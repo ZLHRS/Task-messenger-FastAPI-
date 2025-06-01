@@ -33,8 +33,8 @@ Administrators create accounts, assign tasks, and monitor their progress.
 ## ⚙️ Install and run
 
 ```bash
-git clone https://github.com/твоя-ссвет.git
-cd 
+git clone https://github.com/ZLHRS/Task-messenger-FastAPI.git
+cd task_messenger
 cp .env.example .env
 ```
 Fill in .env and you can use docker-compose configuration.
