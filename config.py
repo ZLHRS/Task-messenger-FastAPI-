@@ -11,7 +11,6 @@ class DataBaseConfig:
     port: str = os.getenv("POSTGRES_PORT", "5432")
     db: str = os.getenv("POSTGRES_DB")
 
-
     def get_url(self):
         return f"postgresql+asyncpg://{self.user}:{self.password}@{self.host}:{self.port}/{self.db}"
 

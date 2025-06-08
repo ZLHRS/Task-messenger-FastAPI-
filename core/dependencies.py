@@ -27,14 +27,14 @@ async def get_current_user(request: Request):
         if not username:
             raise HTTPException(status_code=401, detail="Invalid token")
         return {"user_id": user_id, "username": username, "email": email, "role": role}
-    except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
-    except ExpiredSignatureError:
+    except JWTError as jwterr:
+        raise HTTPException(status_code=401, detail="Invalid token") from jwterr
+    except ExpiredSignatureError as expirederr:
         raise HTTPException(
             status_code=401, detail="Token expired, please log in again"
-        )
-    except DecodeError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+        ) from expirederr
+    except DecodeError as decodeerr:
+        raise HTTPException(status_code=401, detail="Invalid token") from decodeerr
 
 
 async def get_current_admin(current_user=Depends(get_current_user)):
