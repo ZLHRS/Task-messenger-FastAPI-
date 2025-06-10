@@ -25,8 +25,8 @@ Administrators create accounts, assign tasks, and monitor their progress.
 | Redis                             | Cache                              |
 | Celery + RabbitMQ                 | Asynchronous tasks (notifications) |
 | Docker + Docker Compose           | Containerization                   |
-| black / flake8                    | Formatting and linting             |
-| pytest                            | Testing                            |
+| black + ruff                      | Formatting and linting             |
+| pytest + Poetry                   | Testing, dependency management     |
 
 ---
 
