@@ -25,7 +25,6 @@ async def send_email_task(to_email: str, title: str, body: str):
         password=email_info.EMAIL_PASSWORD,
         start_tls=True,
     )
-    print("успех")
 
 
 @shared_task

@@ -39,8 +39,8 @@ services:
     working_dir: /app
     command: celery -A utils.celery_app worker --pool=solo --loglevel=info
     environment:
-      REDIS_URL_DOCKER: ${REDIS_URL_DOCKER}
-      CELERY_BROKER_DOCKER: ${CELERY_BROKER_DOCKER}
+      REDIS_URL: ${REDIS_URL_DOCKER}
+      CELERY_BROKER: ${CELERY_BROKER_DOCKER}
     depends_on:
       - db
       - redis
@@ -52,7 +52,7 @@ services:
     image: redis:latest
     container_name: redis
     environment:
-      REDIS_URL_DOCKER: ${REDIS_URL_DOCKER}
+      REDIS_URL: ${REDIS_URL_DOCKER}
     ports:
       - "6379:6379"
     restart: unless-stopped
