@@ -28,9 +28,9 @@ async def db_session():
 async def setup_users(db_session):
     user_repo = BaseRepository(db_session, User)
     test_users = [
-        CreateUser(username="user1", password="password123", role=UserRole("admin")),
-        CreateUser(username="user2", password="123sgasd", role=UserRole("user")),
-        CreateUser(username="user3", password="asasdd", role=UserRole("admin")),
+        CreateUser(username="user1", password="password123", email="shaykenov.danialg@gmail.com", role=UserRole("admin")),
+        CreateUser(username="user2", password="123sgasd", email="ceburekmaladec@gmail.com", role=UserRole("user")),
+        CreateUser(username="user3", password="asasdd", email="Alex.maha@gmail.com", role=UserRole("admin")),
     ]
     for user_data in test_users:
         await user_repo.create(user_data)

@@ -8,9 +8,8 @@ from models.user_model import User, UserRole
 @pytest.mark.parametrize(
     "user_data",
     [
-        CreateUser(username="user1", password="password123", role=UserRole("admin")),
-        CreateUser(username="user2", password="123sgasd", role=UserRole("user")),
-        CreateUser(username="user3", password="asasdd", role=UserRole("admin")),
+        CreateUser(username="user1", password="password123", email="shaykenov.danialg@gmail.com", role=UserRole("admin")),
+        CreateUser(username="user2", password="123sgasd", email="ceburekmaladec@gmail.com", role=UserRole("user")),
     ],
 )
 async def test_create_serial(db_session, user_data):

@@ -2,7 +2,7 @@ name: testing and deploy
 on: [push]
 
 jobs:
-  build:
+  testing-deploy:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
