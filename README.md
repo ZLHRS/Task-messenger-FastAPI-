@@ -16,19 +16,20 @@ Administrators create accounts, assign tasks, and monitor their progress.
 ---
 
 ## 🛠️ Technologies
+| 🧰 Technology                   | ⚙️ Purpose                                   |
+|---------------------------------|----------------------------------------------|
+| **Python 3.12**                 | Core development language                    |
+| **FastAPI**                     | High-performance asynchronous web API        |
+| **PostgreSQL**                  | Relational database                          |
+| **SQLAlchemy** + **Alembic**    | ORM + database migrations                    |
+| **Redis**                       | In-memory data store (cache, Celery)         |
+| **Celery** + **RabbitMQ**       | Distributed task queue (e.g., notifications) |
+| **Docker** + **Docker Compose** | Containerization and local orchestration     |
+| **Pytest**                      | Unit                                         |
+| **Poetry**                      | Dependency and package management            |
+| **black** + **ruff**            | Code formatting and linting                  |
+| **GitHub Actions** *(CI/CD)*    | Continuous integration and deployment        |
 
-| Technology                        | Purpose                            |
-|-----------------------------------|------------------------------------|
-| Python 3.12                       | Development language               |
-| FastAPI                           | Web framework                      |
-| PostgreSQL + SQLAlchemy + Alembic | Database and migrations            |
-| Redis                             | Cache                              |
-| Celery + RabbitMQ                 | Asynchronous tasks (notifications) |
-| Docker + Docker Compose           | Containerization                   |
-| black + ruff                      | Formatting and linting             |
-| pytest + Poetry                   | Testing, dependency management     |
-
----
 
 ## ⚙️ Install and run
 

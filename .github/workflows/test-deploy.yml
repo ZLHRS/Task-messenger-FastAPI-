@@ -2,8 +2,11 @@ name: testing and deploy
 on: [push]
 
 jobs:
-  build:
+  build-test-deploy:
     runs-on: ubuntu-22.04
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ALGORITHM: ${{ secrets.ALGORITHM }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -12,7 +15,11 @@ jobs:
         run: docker build -t backend-image .
 
       - name: Testing
-        run: docker run --rm backend-image pytest -s -v
+        run: |
+          docker run --rm \
+            -e SECRET_KEY="$SECRET_KEY" \
+            -e ALGORITHM="$ALGORITHM" \
+            backend-image pytest -s -v
 
       - name: Deploy
-        run: docker-compose up -d
+        run: docker compose up -d
